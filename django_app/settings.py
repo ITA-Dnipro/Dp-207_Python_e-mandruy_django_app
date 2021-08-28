@@ -61,7 +61,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'middleware.error_handler.BaseExceptionHandler',
-    'middleware.error_handler.SpecialExceptionHandler'
+    'middleware.error_handler.SpecialExceptionHandler',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'django_app.urls'
