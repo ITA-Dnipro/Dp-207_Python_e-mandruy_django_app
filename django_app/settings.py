@@ -155,10 +155,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 
-CELERY_BROKER_URL = 'redis://redis_server:6379/0'
+CELERY_BROKER_URL = os.environ['CACHE_REDIS_URL']
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = 'redis://redis_server:6379/0'
+CELERY_RESULT_BACKEND = os.environ['CACHE_REDIS_URL']
 
 # CELERY_BEAT_SCHEDULE = {
 #     "sample_task": {
