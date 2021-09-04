@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+<main>
+    <br>
+    <br>
+    <br>
+
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-3">
+        <img class="bd-placeholder-img rounded-circle" width="300" height="300" src="https://www.frommers.com/system/media_items/attachments/000/864/746/s980/shutterstock_ribkhan-crop.jpg?1571248109" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/></img>
+
+        <h2>Hotels</h2>
+        <p>Check the best hotels and price! Make an order! Don't forget to leave a comment and rate the hotel!</p>
+        <p><a class="btn btn-primary" href="{% url 'hotels:main' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3">
+        <img class="bd-placeholder-img rounded-circle" width="300" height="300" src="https://www.touchbistro.com/wp-content/uploads/2019/07/100-most-unique-restaurant-concepts-around-the-world.png" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/></img>
+
+        <h2>Restaurants</h2>
+        <p>Discover your own best restaurant with food you enjoy! You will always know best places!</p>
+        <p><a class="btn btn-primary" href="{% url 'restaurants:main' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3">
+        <img class="bd-placeholder-img rounded-circle" width="300" height="300" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWWpAUnNBSFPiDwpCl_FFghAASQmHxLwxrXA&usqp=CAU" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/></img>
+
+        <h2>Transport</h2>
+        <p>Make your trip fast and safe with our transport service! Get schedule! Get your ticket!</p>
+        <p><a class="btn btn-primary" href="{% url 'transport:main_view' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3">
+        <img class="bd-placeholder-img rounded-circle" width="300" height="300" src="https://www.vanguardngr.com/wp-content/uploads/2020/01/Weather-Forecast.jpg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/></img>
+
+        <h2>Weather</h2>
+        <p>We can tell when you will need an umbrella! Check the weather with our service!</p>
+        <p><a class="btn btn-primary" href="{% url 'weather:main' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+
+
+  </div><!-- /.container -->
+
+
+</main>
+
+{% endblock %}

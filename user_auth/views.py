@@ -5,7 +5,7 @@ from .forms import CreateUserForm
 
 
 def home_page(request):
-    return render(request, 'base.html')
+    return render(request, 'home.html')
 
 
 def sign_up(request):
