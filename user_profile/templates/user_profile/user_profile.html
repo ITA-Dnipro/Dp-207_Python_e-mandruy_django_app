@@ -183,6 +183,25 @@
             {% endfor %}
         </div>
             {% endif %}
-    </div> 
+    </div>
+    <div class="col-md-6 hotels-block">
+    <h5>Subscriptions</h5>
+    <a href = {% url "subscription:add_subscription" %} class="btn btn-success pass-btn" style="margin-top:0;">Subscribe</a>
+    </div>
+    {% if subscriptions %}
+    <ul>
+        {% for subscription in subscriptions %}
+            <div class="col-md-6 hotels-block">
+                <li>Subscription on {{ subscription.service }} in {{ subscription.target_city }} untill {{subscription.date_of_expire|date}}
+                    <br>
+                    <a href = {% url "subscription:delete_subscription" subscription.pk%} class="btn btn-danger pass-btn" style="margin-top:0;">Delete</a>
+                    <a href = {% url "subscription:update_subscription" subscription.pk%} class="btn btn-success pass-btn" style="margin-top:0;">Update</a>
+                    <br>
+                    <br>
+                </li>
+            </div>
+        {% endfor %}
+    </ul>
+{% endif %}
 </div>
 {% endblock %}

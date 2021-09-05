@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'statistics_app',
     'user_profile',
     'rest_framework',
+    'subscription',
     'restaurants',
 ]
 
@@ -61,8 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'middleware.error_handler.BaseExceptionHandler',
-    'middleware.error_handler.SpecialExceptionHandler',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'middleware.error_handler.SpecialExceptionHandler'
 ]
 
 ROOT_URLCONF = 'django_app.urls'
@@ -155,10 +155,11 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 
-CELERY_BROKER_URL = os.environ['CACHE_REDIS_URL']
+CELERY_BROKER_URL = 'redis://redis_server:6379' #os.environ.get('CACHE_REDIS_URL')
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = os.environ['CACHE_REDIS_URL']
+CELERY_RESULT_BACKEND = 'redis://redis_server:6379'#os.environ.get('CACHE_REDIS_URL')
+# 'redis://redis_server:6379/0'
 
 # CELERY_BEAT_SCHEDULE = {
 #     "sample_task": {
@@ -172,14 +173,19 @@ CELERY_BEAT_SCHEDULE = {
         "task": "weather.tasks.delete_all_from_weather_model",
         "schedule": crontab(minute='*/59'),
     },
+    "sending_emails": {
+        "task": "subscription.tasks.sending_emails",
+        "schedule": crontab()
+        # minute=0, hour=9
+    },
 }
 
 # cache settings
 
-CACHE_REDIS_HOST = os.environ['CACHE_REDIS_HOST']
-CACHE_REDIS_PORT = os.environ['CACHE_REDIS_PORT']
-CACHE_REDIS_DB = os.environ['CACHE_REDIS_DB']
-CACHE_REDIS_URL = os.environ['CACHE_REDIS_URL']
+CACHE_REDIS_HOST = 'redis://redis_server:6379' #os.environ['CACHE_REDIS_PORT']
+CACHE_REDIS_PORT = 'redis://redis_server:6379'#os.environ['CACHE_REDIS_PORT']
+CACHE_REDIS_DB = 'redis://redis_server:6379'#os.environ['CACHE_REDIS_DB']
+CACHE_REDIS_URL = 'redis://redis_server:6379'#os.environ['CACHE_REDIS_URL']
 
 CACHES = {
     'default': {

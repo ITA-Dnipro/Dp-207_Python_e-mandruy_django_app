@@ -22,11 +22,12 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('transport/', include('transport.urls')),
-    path('', views.home_page, name='home'),
+    path('home/', views.home_page, name='home'),
     path('user_auth/', include('user_auth.urls')),
     path('hotels/', include('hotels.urls'), name='hotels'),
     path('weather/', include('weather.urls'), name='weather'),
     path('user_profile/', include('user_profile.urls'), name='user_profile'),
+    path('subscription/', include('subscription.urls'), name='subscription'),
     path('restaurants/', include('restaurants.urls'), name='restaurants'),
     path('statistics/', include('statistics_app.urls'), name='statistics_app')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

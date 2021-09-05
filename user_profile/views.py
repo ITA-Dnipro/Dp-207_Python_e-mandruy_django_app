@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import PhotoForUser
 import os
 from datetime import datetime
+from subscription.utils.utils_for_subscription import ServiceHandler
 
 
 def user_profile(request):
@@ -33,7 +34,8 @@ def user_profile(request):
     except Order.DoesNotExist:
         hotels_actual = []
         hotels_history = []
-    
+
+    subscriptions = ServiceHandler().get_all_user_subscriptions(request.user.pk)
 
     if request.method == 'POST':
         if 'Change Nickname' in request.POST:
@@ -70,7 +72,7 @@ def user_profile(request):
                     return redirect('user_auth:sign_in')
             else:
                 messages.error(request, f"Your password is incorrect or new password can't be entirely numeric, can't be too similar to your personal information and must contain at least 8 characters.")
-    context = {'form': form, 'img_obj': img_obj, 'hotels_actual': hotels_actual, 'hotels_history': hotels_history,}
+    context = {'form': form, 'img_obj': img_obj, 'hotels_actual': hotels_actual, 'hotels_history': hotels_history, 'subscriptions': subscriptions}
     return render(request, 'user_profile/user_profile.html', context)
 
 def del_page(request):
