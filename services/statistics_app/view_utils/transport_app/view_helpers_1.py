@@ -109,17 +109,19 @@ def get_route_cars_stats(route):
     cars_count = Car.objects(route=route).count()
     cars = Car.objects(route=route).all()
     #
-    cars_prices = [float(car.price.split(' ')[0]) for car in cars]
-    cars_min_price = int(min(cars_prices))
-    cars_max_price = int(max(cars_prices))
-    cars_avg_price = sum(cars_prices) / len(cars_prices)
-    #
-    result_dict['cars_count'] = cars_count
-    result_dict['cars_min_price'] = f'{cars_min_price} UAH'
-    result_dict['cars_max_price'] = f'{cars_max_price} UAH'
-    result_dict['cars_avg_price'] = f'{cars_avg_price} UAH'
-    #
-    return result_dict
+    if cars:
+        cars_prices = [float(car.price.split(' ')[0]) for car in cars]
+        cars_min_price = int(min(cars_prices))
+        cars_max_price = int(max(cars_prices))
+        cars_avg_price = sum(cars_prices) / len(cars_prices)
+        #
+        result_dict['cars_count'] = cars_count
+        result_dict['cars_min_price'] = f'{cars_min_price} UAH'
+        result_dict['cars_max_price'] = f'{cars_max_price} UAH'
+        result_dict['cars_avg_price'] = f'{cars_avg_price} UAH'
+        #
+        return result_dict
+    return None
 
 
 def get_route_trains_stats(route):
@@ -129,15 +131,17 @@ def get_route_trains_stats(route):
     result_dict = {}
     trains_count = Train.objects(route=route).count()
     trains = Train.objects(route=route).all()
-    trains_in_route_times = [{train.id: {'original': train.in_route_time}} for train in trains]
-    in_route_data = train_in_route_time_data(trains=trains_in_route_times)
-    #
-    result_dict['trains_count'] = trains_count
-    #
-    result_dict['min_in_route_time'] = in_route_data.get('min_in_route_time')
-    result_dict['max_in_route_time'] = in_route_data.get('max_in_route_time')
-    result_dict['avg_in_route_time'] = in_route_data.get('avg_in_route_time')
-    return result_dict
+    if trains:
+        trains_in_route_times = [{train.id: {'original': train.in_route_time}} for train in trains]
+        in_route_data = train_in_route_time_data(trains=trains_in_route_times)
+        #
+        result_dict['trains_count'] = trains_count
+        #
+        result_dict['min_in_route_time'] = in_route_data.get('min_in_route_time')
+        result_dict['max_in_route_time'] = in_route_data.get('max_in_route_time')
+        result_dict['avg_in_route_time'] = in_route_data.get('avg_in_route_time')
+        return result_dict
+    return None
 
 
 def train_in_route_time_data(trains):
