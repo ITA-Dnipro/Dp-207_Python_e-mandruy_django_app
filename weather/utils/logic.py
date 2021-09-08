@@ -40,7 +40,7 @@ class WeatherHandler:
 
     def create_weather_in_city(self, current_temp, feels_like, description,
                                humidity, wind, clouds, max_temp, min_temp,
-                               current_date, icon ):
+                               current_date, icon):
         """
         Add weather data into Weather model
         """
@@ -62,6 +62,7 @@ class WeatherHandler:
 
     def get_weather_from_model(self):
         city = self.get_city_from_city_model()
+
         return Weather.objects.filter(city=city).all()
 
     def get_city_from_city_model(self):

@@ -1,7 +1,6 @@
 import requests
-import os
 
-GET_WEATHER_API_URL = os.environ.get('GET_WEATHER_API_URL')
+GET_WEATHER_API_URL = "http://flask_weather:5002/appi/get_weather_by_city"
 
 
 def get_weather_from_api(city: object) -> object:
